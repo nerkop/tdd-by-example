@@ -37,10 +37,15 @@ public class MoneyCurrency implements Expression {
 
     @Override
     public MoneyCurrency reduce(Bank bank, String to){
+<<<<<<< Updated upstream
         //return this;
         int rate = (currency.equals("CHF") && to.equals("USD")) ? 2 : 1;
       //  return new MoneyCurrency(amount / bank.rate(this.currency, to), to);
         return new MoneyCurrency(rate,to);
+=======
+        int rate = (currency.equals("CHF") && currency.equals("USD")) ? 2:1;
+        return new MoneyCurrency(amount/ rate, to);
+>>>>>>> Stashed changes
     }
 
 
