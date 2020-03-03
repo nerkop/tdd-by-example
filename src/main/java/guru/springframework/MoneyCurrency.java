@@ -26,6 +26,7 @@ public class MoneyCurrency implements Expression {
         return new MoneyCurrency(amount*multiplier, this.currency);
     }
 
+    @Override
     public Expression plus (Expression addend){
         return new Sum(this, addend);
     }

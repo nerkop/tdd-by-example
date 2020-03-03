@@ -1,6 +1,7 @@
 package guru.springframework;
 
 import org.junit.jupiter.api.Test;
+import sun.swing.BakedArrayList;
 
 import javax.sound.midi.Soundbank;
 
@@ -93,5 +94,27 @@ public class PracticeTest {
         bank.addRate("CHF", "USD", 2);
         MoneyCurrency result = bank.reduced(fiveDoll.plus(tenFranc), "USD");
         assertEquals(MoneyCurrency.getDollar(10), result);
+    }
+
+    @Test
+    void testSumPlusMoney() {
+        Expression fiveDollar = MoneyCurrency.getDollar(5);
+        Expression tenFrancs = MoneyCurrency.getFranc(10);
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Expression sum = new Sum(fiveDollar, tenFrancs).plus(fiveDollar);
+        MoneyCurrency result = bank.reduced(sum, "USD");
+        assertEquals(MoneyCurrency.getDollar(15), result);
+    }
+
+    @Test
+    void testSumTimes() {
+        MoneyCurrency fiveDollar = MoneyCurrency.getDollar(5);
+        MoneyCurrency tenFrancs = MoneyCurrency.getFranc(10);
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Expression sum = new Sum(fiveDollar, tenFrancs).times(2);
+        MoneyCurrency result = bank.reduced(sum, "USD");
+        assertEquals(MoneyCurrency.getDollar(20), result);
     }
 }
