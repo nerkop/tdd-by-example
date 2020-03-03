@@ -22,11 +22,11 @@ public class MoneyCurrency implements Expression {
         return new MoneyCurrency(amount, "CHF");
     }
 
-    public MoneyCurrency times(int multiplier) {
+    public Expression times(int multiplier) {
         return new MoneyCurrency(amount*multiplier, this.currency);
     }
 
-    public Expression plus (MoneyCurrency addend){
+    public Expression plus (Expression addend){
         return new Sum(this, addend);
     }
 
